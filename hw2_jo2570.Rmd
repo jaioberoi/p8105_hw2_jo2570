@@ -31,5 +31,25 @@ mr_trash_wheel =
   mutate(sports_balls = as.integer(sports_balls))
 ```
 
+Reading in the precipitation data for 2017
+Adding a variable year = 2017 
+Deleting rows without precipiatation data 
 
+```{r}
+ppt_2017 = 
+  readxl::read_excel("./data/trash_wheel_data.xlsx", sheet = 6, range = "A2:B14") %>% 
+  janitor::clean_names() %>%
+  mutate(year = 2017)
+```
+
+Reading in the precipitation data for 2017
+Adding a variable year = 2017 
+Deleting rows without precipiatation data 
+
+```{r}
+ppt_2018 = 
+  readxl::read_excel("./data/trash_wheel_data.xlsx", sheet = 5, range = "A2:B14") %>% 
+  janitor::clean_names() %>%
+  mutate(year = 2018)
+```
 
