@@ -53,3 +53,12 @@ ppt_2018 =
   mutate(year = 2018)
 ```
 
+Merging the datasets and convering month into a character variable 
+
+```{r}
+ppt_merged =
+  bind_rows(ppt_2017, ppt_2018) %>%
+  mutate(month = month.abb[month])
+```
+
+
