@@ -10,9 +10,26 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Running the tidyverse package 
-
 ```{r}
 library(tidyverse)
 ```
+
+Problem 1: 
+
+Reading in the Mr. Trash Wheel dataset 
+Cleaning the names 
+Deleting last 3 columns (15, 16 and 17)
+Dropping rows that detail mothly total (not specific to a dumpster)
+Converting sports balls variable to an integer value 
+
+```{r}
+mr_trash_wheel = 
+  readxl::read_excel(path = "./data/trash_wheel_data.xlsx") %>%
+  janitor::clean_names() %>% 
+  select(-x15, -x16, -x17) %>%
+  drop_na(dumpster) %>% 
+  mutate(sports_balls = as.integer(sports_balls))
+```
+
 
 
