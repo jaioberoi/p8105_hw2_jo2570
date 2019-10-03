@@ -62,7 +62,11 @@ ppt_merged =
   mutate(month = month.abb[month])
 ```
 
+the size of the dataframe `mr_trash_wheel` is `r nrow(mr_trash_wheel)` rows and `r ncol(mr_trash_wheel)` columns.  
+the median number of sports balls for 2017 `r median(pull(filter(mr_trash_wheel,year == 2017),sports_balls))`
 
+the size of the dataframe `ppt_merged` is `r nrow(ppt_merged)` rows and `r ncol(ppt_merged)` columns.
+the total precipiation for 2018 is `r sum(pull(ppt_2018, total))`
 
 -- 
 
@@ -130,6 +134,15 @@ full_data =
     left_join(snp_pols_data, umempl_data, by = c("year", "month"))
 ```
 
+the size of the dataframe `pols_month_data` is `r nrow(pols_month_data)` rows and `r ncol(pols_month_data)` columns. 
+
+the size of the dataframe `snp_data` is `r nrow(snp_data)` rows and `r ncol(snp_data)` columns.  
+
+the size of the dataframe `umempl_data` is `r nrow(umempl_data)` rows and `r ncol(umempl_data)` columns.  
+
+the size of the dataframe `snp_pols_data` is `r nrow(snp_pols_data)` rows and `r ncol(snp_pols_data)` columns.  
+
+the size of the dataframe `full_data` is `r nrow(full_data)` rows and `r ncol(full_data)` columns.
 
 
 -- 
@@ -164,11 +177,19 @@ To get a table showing the most popular name among male children over time:
 
 ```{r}
 pop_baby_names_data %>%
-  filter(gender == "male") %>%
+  filter(gender == "male", rank == 1) %>%
   select(-count) %>%
   pivot_wider(names_from = year_of_birth, 
-              values_from = rank) %>% 
+              values_from = childs_first_name) %>% 
   knitr::kable()
 ```
 
+To get a scatter plot of the number of children with a name against the rank in popularity of that name: 
 
+```{r}
+scatter_data = pop_baby_names_data %>%
+  filter(gender == "male", ethnicity == "white non hispanic", year_of_birth == 2016)
+
+ggplot(scatter_data, aes(x = rank, y = count)) +
+geom_point()
+```
