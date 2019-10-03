@@ -114,6 +114,13 @@ umempl_data =
                values_to =  "rate")
 ```
 
+Merging the snp dataset to the pols dataset 
+
+```{r}
+
+
+
+```
 
 
 
