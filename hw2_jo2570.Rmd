@@ -136,13 +136,19 @@ full_data =
 
 Problem 3: 
 
+Reading in and cleaning pop_baby_names data 
+
 ```{r}
 pop_baby_names_data = 
   read_csv(file = "./data/popular_baby_names.csv") %>%
-  janitor::clean_names() 
-  
-
-
+  janitor::clean_names() %>%
+    mutate(gender = str_to_lower(gender),
+           childs_first_name = str_to_lower(childs_first_name),
+           ethnicity = recode(ethnicity, "ASIAN AND PACI" = "ASIAN AND PACIFIC ISLANDER"),
+           ethnicity = recode(ethnicity, "BLACK NON HIS" = "BLACK NON HISPANIC" ),
+           ethnicity = recode(ethnicity, "WHITE NON HIS" = "WHITE NON HISPANIC"),
+           ethnicity = str_to_lower(ethnicity)) %>%
+  distinct()
 ```
 
 
