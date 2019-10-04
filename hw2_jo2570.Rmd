@@ -144,7 +144,6 @@ the size of the dataframe `snp_pols_data` is `r nrow(snp_pols_data)` rows and `r
 
 the size of the dataframe `full_data` is `r nrow(full_data)` rows and `r ncol(full_data)` columns.
 
-
 -- 
 
 Problem 3: 
